@@ -17,7 +17,7 @@ public class Main {
         for (int i = 0; i < N; i ++) {
             sb.append(arr[i]).append('\n');
         }
-        System.out.print(sb);
+        System.out.print(sb.toString());
 
     }
 }
