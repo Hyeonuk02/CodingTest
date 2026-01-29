@@ -62,9 +62,9 @@ public class Main { // 백준에서는 클래스 이름이 반드시 Main 이어
 
         /*
          * [출력]
-         * System.out.print(sb); 는 내부적으로 sb.toString()을 호출해서 출력함.
-         * 즉, System.out.print(sb.toString()); 과 같은 결과.
+         * StringBuilder에 모아둔 내용을
+         * toString()으로 실제 String으로 변환한 뒤 한 번에 출력
          */
-        System.out.print(sb);
+        System.out.print(sb.toString());
     }
 }
