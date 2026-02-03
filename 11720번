@@ -1,1 +1,30 @@
+import java.io.*;
 
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
+        /*
+         * [둘째 줄 입력]
+         * 예: "54321" 처럼 공백 없이 숫자들이 붙어서 들어오는 한 줄을 통째로 문자열로 받음
+         * 여기서 s는 "54321" 같은 문자열 1개(덩어리)임
+         */
+        String s = br.readLine();
+        int sum = 0;
+        /*
+         * [문자열을 배열처럼 순회]
+         * s.charAt(i) : 문자열 s의 i번째 문자(char)를 가져옴 (예: '5', '4', ...)
+         * '0'         : 문자 '0'
+         *
+         * (중요) s.charAt(i)는 숫자 5가 아니라 문자 '5'임
+         * 그래서 실제 숫자로 바꾸려면:
+         *   '5' - '0' = 5   (아스키 코드 값이 연속이라 가능)
+         */
+        for (int i = 0; i < N; i++) {
+            sum += s.charAt(i) - '0';
+        }
+
+        System.out.println(sum);
+    }
+}
