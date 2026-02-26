@@ -1,1 +1,90 @@
+import java.io.*;     // BufferedReader, InputStreamReader 사용
+import java.util.*;   // StringTokenizer 사용
 
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+        /*
+         * [입력 준비]
+         * System.in         : 표준 입력(키보드 입력), 바이트 단위
+         * InputStreamReader : 바이트 → 문자(char)로 변환
+         * BufferedReader    : 문자 입력을 버퍼에 모아서 한 줄 단위로 빠르게 읽음
+         */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        /*
+         * [첫 줄 입력]
+         * 과목의 개수 N
+         * readLine()은 한 줄을 문자열로 읽고,
+         * parseInt는 그 문자열을 정수로 변환
+         */
+        int N = Integer.parseInt(br.readLine());
+
+        /*
+         * [둘째 줄 입력]
+         * 예: "40 80 60"
+         * 한 줄 전체를 문자열로 읽은 뒤,
+         * 공백 기준으로 잘라서 하나씩 꺼낼 수 있도록 StringTokenizer 생성
+         */
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        /*
+         * 점수들을 저장할 배열
+         */
+        int[] arr = new int[N];
+
+        /*
+         * 최댓값을 저장할 변수
+         * 문제에서 가장 높은 점수 M을 찾아야 하기 때문
+         */
+        int max = 0;
+
+        /*
+         * [점수 입력 + 최댓값 찾기]
+         *
+         * st.nextToken()        → 공백으로 나뉜 다음 문자열 반환 (예: "40")
+         * Integer.parseInt(...) → 문자열을 정수로 변환 (40)
+         *
+         * 반복문이 돌 때마다 nextToken()은
+         * 내부 위치가 이동하면서 다음 값을 자동으로 꺼냄
+         */
+        for (int i = 0; i < N; i++) {
+
+            arr[i] = Integer.parseInt(st.nextToken());
+
+            /*
+             * 지금까지 입력받은 점수 중 가장 큰 값을 max에 저장
+             */
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        /*
+         * 점수 조작 후 합을 저장할 변수
+         * 실수 계산이 필요하므로 double 사용
+         */
+        double sum = 0;
+
+        /*
+         * [점수 재계산]
+         *
+         * 문제 조건:
+         * 새로운 점수 = (기존 점수 / 최댓값) * 100
+         *
+         * (double) arr[i]를 하는 이유:
+         * 정수 / 정수는 정수 나눗셈이 되므로
+         * 반드시 하나는 double이어야 실수 계산이 됨
+         */
+        for (int i = 0; i < N; i++) {
+            sum += (double) arr[i] / max * 100;
+        }
+
+        /*
+         * 새로운 평균 출력
+         * sum은 조작된 점수들의 합
+         * sum / N = 평균
+         */
+        System.out.print(sum / N);
+    }
+}
